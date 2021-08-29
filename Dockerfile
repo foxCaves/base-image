@@ -16,4 +16,9 @@ COPY etc/s6 /etc/s6
 
 RUN /etc/nginx/cfips.sh
 
+VOLUME /var/lib/redis
+VOLUME /var/lib/postgresql
+
+EXPOSE 80 443
+
 ENTRYPOINT ["s6-svscan", "/etc/s6"]
