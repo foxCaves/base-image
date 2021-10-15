@@ -1,6 +1,6 @@
 FROM openresty/openresty:alpine-fat
 
-RUN apk update && apk add redis s6 imagemagick git argon2-libs argon2-dev argon2 postgresql runuser libuuid
+RUN apk update && apk add s6 imagemagick git argon2-libs argon2-dev argon2 runuser libuuid
 RUN mkdir -p /usr/local/share/lua/5.1
 RUN /usr/local/openresty/bin/opm get openresty/lua-resty-redis openresty/lua-resty-websocket thibaultcha/lua-argon2-ffi GUI/lua-resty-mail
 RUN /usr/local/openresty/luajit/bin/luarocks install luasocket
@@ -16,9 +16,6 @@ COPY etc/cfips.sh /etc/nginx/cfips.sh
 COPY etc/s6 /etc/s6
 
 RUN /etc/nginx/cfips.sh
-
-VOLUME /var/lib/redis
-VOLUME /var/lib/postgresql
 
 EXPOSE 80 443
 
