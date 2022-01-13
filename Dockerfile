@@ -17,4 +17,6 @@ COPY etc /etc
 
 EXPOSE 80 443
 
+VOLUME /etc/letsencrypt
+
 ENTRYPOINT ["s6-svscan", "/etc/s6"]
